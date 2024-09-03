@@ -520,72 +520,81 @@
 
   savetimesheetdetails = (status, no) => {
     debugger;
-    const allRows = document.querySelectorAll("#dda_auth tbody tr"); // Replace with your table's ID
+    const allRows = document.querySelectorAll("#dda_auth tbody tr");
     const dataToSave = [];
+
     allRows.forEach((row) => {
       const date = row.querySelector("td:nth-child(1)").innerText;
       const project = row.querySelector(".project_dd").value;
-      const activitys = row.querySelector(".activity_cell").value;
-      // const savestatus = $("#saveBudget").val();
 
-      // const taskInputs = row.querySelectorAll(".task_cell textarea");
+      // Get activity inputs
+      const activityInputs = row.querySelectorAll(".activity_cell input");
+      // Get hours inputs
       const hoursInputs = row.querySelectorAll(".hours_cell input");
+      // Get description inputs
       const descriptionInputs = row.querySelectorAll(
         ".description_cell textarea"
       );
 
-      const s_created_by = localStorage.getItem("em_code");
-      // const s_start_date = new Date($("#s_date").val());
-      // const s_end_date = new Date($("#e_date").val());
+      // Check if any activity input has a value
+      const hasData = Array.from(activityInputs).some(
+        (input) => input.value.trim() !== ""
+      );
 
-      const tasks = [];
+      if (hasData) {
+        const s_created_by = localStorage.getItem("em_code");
 
-      // Iterate over each task, hours, and description input
-      activitys.forEach((activityinput, index) => {
-        tasks.push({
-          activity: activityinput.value,
-          hours: hoursInputs[index].value,
-          description: descriptionInputs[index].value,
-          s_created_by: s_created_by,
+        const tasks = [];
+
+        // Iterate over each activity, hours, and description input
+        activityInputs.forEach((activityInput, index) => {
+          // Only push data if activity input has value
+          if (activityInput.value.trim() !== "") {
+            tasks.push({
+              activity: activityInput.value,
+              hours: hoursInputs[index] ? hoursInputs[index].value : "",
+              description: descriptionInputs[index]
+                ? descriptionInputs[index].value
+                : "",
+              s_created_by: s_created_by,
+            });
+          }
         });
-      });
 
-      dataToSave.push({
-        date: date,
-        project: project,
-        activity: activitys,
-        savestatus: status,
-        status: no,
-        // s_start_date: s_start_date,
-        // s_end_date: s_end_date,
-        // tasks: tasks,
-      });
+        dataToSave.push({
+          date: date,
+          project: project,
+          tasks: tasks,
+          savestatus: status,
+          status: no,
+        });
+      }
     });
 
     console.log(dataToSave);
 
-    try {
-      $.ajax({
-        type: "POST",
-        url: "/ess/savetimedetails",
-        data: JSON.stringify(dataToSave),
-        contentType: "application/json",
-        crossDomain: true,
-        beforeSend: function () {
-          // add_loader("loader");
-        },
-        success: function (results) {
-          callAlert("success", success_handling(results));
-          $("#reportCard").toggle();
-          $("#enterform").toggle();
-          $("#form-plan").toggle();
-        },
-        complete: function () {
-          // remove_loader('loader');
-        },
-      });
-    } catch (err) {
-      // remove_loader('loader');
-    }
+    // try {
+    //   $.ajax({
+    //     type: "POST",
+    //     url: "/ess/savetimedetails",
+    //     data: JSON.stringify(dataToSave),
+    //     contentType: "application/json",
+    //     crossDomain: true,
+    //     beforeSend: function () {
+    //       // add_loader("loader");
+    //     },
+    //     success: function (results) {
+    //       callAlert("success", success_handling(results));
+    //       $("#reportCard").toggle();
+    //       $("#enterform").toggle();
+    //       $("#form-plan").toggle();
+    //     },
+    //     complete: function () {
+    //       // remove_loader('loader');
+    //     },
+    //   });
+    // } catch (err) {
+    //   // remove_loader('loader');
+    // }
   };
 })();
