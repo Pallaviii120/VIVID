@@ -1,0 +1,149 @@
+<!-- Main content -->
+<style>
+    .custom-table {
+        overflow-x: hidden;
+    }
+</style>
+
+<section class="content">
+    <div class="container-fluid" id="form1">
+        <div class="row">
+            <div class="col-md-12 mx-auto" id="enterform" style="display: none;">
+                <div class="card card-primary card-outline">
+
+                    <div class="card-body pad table-responsive">
+                        <form id="form-plan" method="post" onsubmit="return false;" autocomplete="off"
+                            class="form_header" url style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Area">Start Date:</label>
+                                        <input type="date" id="s_date" name="s_date" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="district">End Date:</label>
+                                        <input type="date" id="e_date" name="e_date" class="form-control" required
+                                            onchange="generateTableRows();getallprojectlist();">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="tablerow">
+
+                                <table id="dda_auth"
+                                    class="table table-sm table-hover text-nowrap display-compact table-responsive table-bordered"
+                                    style="width: auto;">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Project - Description</th>
+                                            <th>Activity</th>
+                                            <!-- <th>Task</th> -->
+                                            <th>Hours</th>
+                                            <th>Work Description</th>
+                                            <th>Add Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Rows will be dynamically inserted here -->
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <div id="pagination" class="pagination-controls"></div>
+
+
+                            <input type="hidden" class="form-control form-control-sm" id="n_sr" name="n_user_id">
+                            <div class="row text-center groupbtns">
+                                <!-- <div class="col-md-4"></div> -->
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-success btn-sm" id="draftbutton"
+                                        onclick="savetimesheetdetails('Draft','0')">Save For Later</button>
+                                    <button type="button" class="btn btn-primary btn-sm" id="saveBudget"
+                                        onclick="savetimesheetdetails('Pending','1')">Submit Data</button>
+                                    <!-- <button type="button" class="btn btn-info btn-sm" id="updateBudget">Update</button> -->
+                                    <button type="button" class="btn btn-warning btn-sm"
+                                        id="cancelBudget">Cancel</button>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 mx-auto" id="reportCard">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-edit"></i>TimeSheet
+                        </h3>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-primary me-md-2" type="button" id="toggleTable"> <i
+                                    class="fas fa-plus"></i> Add
+                                TimeSheet</button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive custom-table">
+                            <h3 style="text-align: center;"><b><u>Timesheet Overview</u></b></h3>
+                            <div class="row" style="align-items: center;">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Area">Start Date:</label>
+                                        <input type="date" id="start_date" name="start_date" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="district">End Date:</label>
+                                        <input type="date" id="end_date" name="end_date" class="form-control" required
+                                            onchange="gettimesheetdetails();">
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="dda_auth2"
+                                class="table table-sm table-hover text-nowrap display-compact table-responsive table-bordered"
+                                style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Sheet ID</th>
+                                        <th>Status</th>
+                                        <th>Project</th>
+                                        <th>Description</th>
+                                        <th>Activity Name</th>
+                                        <th>Task Name</th>
+                                        <th>Work Hours</th>
+                                        <th>Work Description</th>
+                                        <th>Date</th>
+
+
+                                    </tr>
+                                <tbody>
+
+                                </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- --------------------------------------------------- -->
+
+
+
+
+</section>
+<script src="../assets/javascript/timesheet.js"></script>

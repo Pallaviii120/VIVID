@@ -1,0 +1,63 @@
+.blockquote1 {
+    background-color: #fff;
+    border-left: .1rem solid #007bff;
+    margin: 0em 0rem;
+    padding: .5em .7rem;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+
+.table2 {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}  
+td small.truncate {
+    width: 250px;
+   /*  white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+.mx-height{
+    max-height: 450px;
+    overflow: scroll;
+   
+}
+
+.custom-scrollbar-js,
+.custom-scrollbar-css {
+  max-height: 300px;
+  height: auto;
+}
+
+
+/* Custom Scrollbar using CSS */
+.custom-scrollbar-css {
+  overflow-y: scroll;
+}
+
+/* scrollbar width */
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #00d2ff;
+  background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
+}
+
+.sidenm{
+  position: relative;
+  top: 10px;
+  left: 5px;
+
+}

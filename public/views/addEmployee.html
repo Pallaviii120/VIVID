@@ -1,0 +1,492 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Employee</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Add Employee</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4" id="profile-card">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center profile-cont">
+                            <img class="profile-user-img img-fluid img-circle" id="proImg" src="" alt="User profile picture">
+                            <div class="middle">
+                                <div class="text" data-toggle="modal" data-target="#imgmodal">Change Photo </div>
+                            </div>
+                        </div>
+
+                        <h3 class="profile-username text-center" id="fullnm"></h3>
+
+                        <p class="text-muted text-center" id="designation"></p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b>Reporting - 1</b>
+                                <a class="float-right" id="reporting1"></a>
+
+                            </li>
+                            <li class="list-group-item">
+                                <b>Reporting - 2</b>
+                                <a class="float-right" id="reporting2"></a>
+
+                            </li>
+                            <li class="list-group-item">
+                                <b>Department</b>
+                                <a class="float-right" id="department"></a>
+
+                            </li>
+                        </ul>
+
+                        <a class="btn btn-primary btn-block btn-sm" id="changePass" data-toggle="modal" data-target="#passmodal">
+                            <i class="fas fa-user-lock"></i> Change Password
+                        </a>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+
+            </div>
+            <!-- /.col -->
+            <div class="expand_class_while_edit">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active  btn-sm" href="#basic" data-toggle="tab" id="basictab">
+                                    <i class="fas fa-info-circle"></i> Basic Information </a>
+                            </li>
+
+                            <li class="nav-item" id="shift">
+                                <a class="nav-link  btn-sm" href="#shift-tab" data-toggle="tab"><i class="fas fa-network-wired"></i> Shift</a>
+                            </li>
+                            
+                            <li class="nav-item" id="leave">
+                                <a class="nav-link  btn-sm" href="#leave-tab" data-toggle="tab"><i class="fas fa-snowman"></i> Leave</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="basic">
+                                <form id="form-employee" method="post" onsubmit="return false;" autocomplete="off" class="form_header">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_first_name">First Name</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_first_name" name="s_first_name" placeholder="Enter First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_middle_name">Middle Name</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_middle_name" name="s_middle_name" placeholder="Enter Middle Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_last_name">Last Name</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_last_name" name="s_last_name" placeholder="Enter Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_code">Emp Code</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_em_code" name="s_em_code" placeholder="Enter Emp Code">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_location_id">Location</label>
+                                                <select class="form-control form-control-sm" id="n_location_id" name="n_location_id">
+                                                    <option label="Select Location"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_email">Email-Id</label>
+                                                <input type="email" class="form-control form-control-sm" id="s_em_email" name="s_em_email" placeholder="Enter Email-Id">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_phone">Phone No</label>
+                                                <input type="number" class="form-control form-control-sm" id="s_em_phone" name="s_em_phone" placeholder="Enter Phone No">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_designation">Designation</label>
+                                                <!-- <select name="s_designation" id="s_designation" class="form-control form-control-sm">
+                                                    <option label="Select Designation"></option>
+                                                    <option value="HR">HR</option>
+                                                    <option value="CEO">CEO</option>
+                                                    <option value="CFO">CFO</option>
+                                                    <option value="COO">COO</option>
+                                                    <option value="CTO">CTO</option>
+                                                    <option value="PM">PM</option>
+                                                </select> -->
+                                                <input type="text"  name="s_designation" id="s_designation" class="form-control form-control-sm" placeholder="Designation">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_gender">Gender</label>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="s_em_gender" value="Male"> Male</label> &nbsp;&nbsp;
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="s_em_gender" value="Female"> Female</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_marital_status">Marital Status</label>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="s_em_marital_status" value="Married"> Married</label> &nbsp;&nbsp;
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="s_em_marital_status" value="Unmarried"> Unmarried</label>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_dep_id">Department</label>
+                                                <select class="form-control form-control-sm" id="n_dep_id" name="n_dep_id">
+                                                    <option label="Select Department"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_reporting1">Reporting - 1</label>
+                                                <select class="form-control form-control-sm select2_emp" id="s_em_reporting1" name="s_em_reporting1"  data-placeholder="Select Reporting - 1" >
+                                                    <option label="Select Reporting1"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_reporting2">Reporting - 2</label>
+                                                <select class="form-control form-control-sm select2_emp" id="s_em_reporting2" name="s_em_reporting2" data-placeholder="Select Reporting - 2" >
+                                                    <option label="Select Reporting2"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_pf_no">Pf No</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_em_pf_no" name="s_em_pf_no" placeholder="Enter Pf No" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_pan">Pan No</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_em_pan" name="s_em_pan" placeholder="Enter Pan No">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_adhar">Aadhaar No.</label>
+                                                <input type="number" class="form-control form-control-sm" id="s_em_adhar" name="s_em_adhar" placeholder="Enter Adhar No">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_blood_group">Blood Group</label>
+                                                <select class="form-control form-control-sm" id="s_em_blood_group" name="s_em_blood_group">
+                                                    <option label="Select Blood Group"></option>
+                                                    <option value="NA" selected>NA</option>
+                                                    <option value="O+">O+</option>
+                                                    <option value="O-">O-</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A-">A-</option>
+                                                    <option value="B+">B+</option>
+                                                    <option value="B-">B-</option>
+                                                    <option value="AB+">AB+</option>
+                                                    <option value="AB-">AB-</option>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="s_em_birthday">Birth Date</label>
+                                                <input type="date" class="form-control form-control-sm" id="s_em_birthday" name="s_em_birthday" placeholder="Enter Birth Date">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="d_em_joining_date">Joining Date</label>
+                                                <input type="date" class="form-control form-control-sm" id="d_em_joining_date" name="d_em_joining_date" placeholder="Enter Joining Date">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 if_new">
+                                            <div class="form-group">
+                                                <label for="s_em_password_">Password</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_em_password_" name="s_em_password_" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 if_new">
+                                            <div class="form-group">
+                                                <label for="s_em_password_conf">Confirm Password</label>
+                                                <input type="text" class="form-control form-control-sm" id="s_em_password_conf" name="s_em_password_conf" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="s_em_address">Address</label>
+                                                <textarea class="form-control form-control-sm" cols="30" rows="3" id="s_em_address" name="s_em_address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-primary btn-sm" id="saveEmp" name="saveEmp"><i class='fas fa-save'></i> Save</button>
+                                            <button type="button" class="btn  btn-info btn-sm" id="updateEmp"><i class='fas fa-save'></i> Save</button>
+                                            <button type="button" class="btn btn-warning btn-sm" id="cancelEmp" name="cancelEmp">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="leave-tab">
+                                <form action="post" id="form-leave" onsubmit="return false;" autocomplete="off" class="form_header">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_type_id">Leave Type</label>
+                                                <select class="form-control form-control-sm" id="n_type_id" name="n_type_id">
+                                                    <option label="Select Leave"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_current_leave">Assign Days</label>
+                                                <input type="number" class="form-control form-control-sm" id="n_current_leave" name="n_current_leave" placeholder="Days">
+                                        
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_carry_forward_leave">Carry Forward</label>
+                                                <input type="number" class="form-control form-control-sm" id="n_carry_forward_leave" name="n_carry_forward_leave" placeholder="CF Days">
+                                            </div>
+                                        </div> 
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="f_dateyear">Financial DateYear</label>
+                                                <select class="form-control form-control-sm" id="f_dateyear" name="f_dateyear">
+                                                    <option label="Select Year"></option>
+                                                </select>
+                                                <input type="hidden" id="n_al_id" name="n_al_id">
+                                            </div>
+                                        </div>
+                                        <!-- monthly limit -->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_max_leave_in_month">Monthly Limit</label>
+                                                <input type="number" class="form-control form-control-sm" id="n_max_leave_in_month" name="n_max_leave_in_month" placeholder="Current Month Limit" step="0.01" value="3">
+                                            </div>
+                                        </div> 
+
+                                        <div class="col-md-12">
+                                            <center>
+                                                <button type="button" class="btn btn-primary btn-sm" id="saveAssignLeave" name="saveAssignLeave">Add</button>
+                                                <button type="button" class="btn btn-primary btn-sm" id="updateAssignLeave" name="updateAssignLeave">Update</button>
+                                                <button type="button" class="btn btn-warning btn-sm" id="cancelAssignLeave" name="cancelAssignLeave">Cancel</button>
+                                            </center>
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <div class="col-md-12">
+                                    <br>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Leave Type</th>
+                                                <th>Assign Days</th>
+                                                <th>Financial Year</th> 
+                                                <th>Month Limit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="leaveData">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.tab-pane -->
+
+                            <div class="tab-pane" id="shift-tab">
+                                <form action="post" id="form-shift" onsubmit="return false;" autocomplete="off" class="form_header">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="n_shift_id">Shift</label>
+                                                <select class="form-control form-control-sm" id="n_shift_id" name="n_shift_id">
+                                                    <option label="Select Shift"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="d_start_date">Start Date</label>
+                                                <input type="date" class="form-control form-control-sm" id="d_start_date" name="d_start_date">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="d_end_date">End Date</label>
+                                                <input type="date" class="form-control form-control-sm" id="d_end_date" name="d_end_date">
+                                                <input type="hidden" id="n_emp_shift_id" name="n_emp_shift_id">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <center> <button type="button" class="btn btn-primary btn-sm" id="saveAssignShift" name="saveAssignShift">Add</button>
+                                                <button type="button" class="btn  btn-info btn-sm" id="updateAssignShift" name="updateAssignShift">Update</button>
+                                                <button type="button" class="btn btn-warning btn-sm" id="cancelAssignShift" name="cancelAssignShift">Cancel</button></center>
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <div class="col-md-12">
+                                    <br>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Shift</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="shiftData">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div class="modal fade model_pass_pic" tabindex="-1" role="dialog" aria-hidden="true" id="imgmodal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Profile Image</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/my_profile_pic" class="form-profile" id="my-profile-pic" name="my-profile-pic" method="POST" enctype="multipart/form-data" target="output_frame1" onsubmit="return true;">
+
+                    <div class="form-group">
+                        <label for="profile-pic">Profile Picture</label>
+                        <input type="file" class="form-control-file" name="profile-pic" id="profile-pic">
+                        <input type="hidden" class="form-control" name="empcode" id="empcode">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary btn-sm " data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary btn-sm" type="submit" id="btn_change_profilepic">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade model_pass_pic" tabindex="-1" role="dialog" aria-hidden="true" id="passmodal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="profile-pic">New Password</label>
+                        <input type="password" class="form-control" name="s_em_password" id="s_em_password">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-pic">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary btn-sm bandkro" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary btn-sm" type="button" id="btn_change_pass">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<iframe src="" name="output_frame1" id="output_frame1" style="display:none;" onload="getCall_deactive()"></iframe>
+<script>
+    $("#updateEmp").hide();
+    $("#profile-card").hide();
+    $("#leave").hide();
+    $("#shift").hide();
+</script>
+<script src="../assets/javascript/addEmployee.js"></script>

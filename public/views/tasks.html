@@ -1,0 +1,469 @@
+<style>
+    .modalfixed {
+        position: sticky;
+        top: 0;
+        width: auto;
+        background-color: white;
+        z-index: 1;
+    }
+</style>
+<style>
+    /* Add border to the right of each table header */
+    #basic-datatables th {
+        border-right: 1px solid #ddd;
+
+    }
+
+    /* Remove border from the last table header */
+    #basic-datatables th:last-child {
+        border-right: none;
+    }
+</style>
+
+
+
+<style>
+    /* Add border to the right of each table header */
+    #basic-datatables2 th {
+        border-right: 1px solid #ddd;
+    }
+
+    /* Remove border from the last table header */
+    #basic-datatables2 th:last-child {
+        border-right: none;
+    }
+</style>
+<style>
+    /* Add border to the right of each table header */
+    #basic-datatables3 th {
+        border-right: 1px solid #ddd;
+    }
+
+    /* Remove border from the last table header */
+    #basic-datatables3 th:last-child {
+        border-right: none;
+    }
+</style>
+<style>
+    /* Custom width for the modal */
+    .modal-dialog.custom-modal-width {
+        max-width: 80%;
+        /* Adjust width as needed */
+    }
+
+    /* Ensure the modal content takes full height */
+    .modal-content.custom-modal-height {
+        height: 90vh;
+        /* Adjust height as needed */
+        overflow-y: auto;
+        /* Ensure scrollability if content overflows */
+    }
+</style>
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1><i class="fas fa-tasks"></i> Project List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Project List</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- <div class="col-sm-2"></div> -->
+            <div class="col-sm-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <!-- 
+                        <select name="s_filter_task" id="s_filter_task" onchange="get_filtered_task()"
+                            style="height: 33px;margin: 2px;" class="">
+                            <optgroup label="All task">
+                                <option value="ALL">ALL</option>
+                            </optgroup>
+                            <optgroup label="Status">
+                                <option value="Assigned">Assigned</option>
+                                <option value="Return" class="cls_ret">Return</option>
+                                <option value="WIP">WIP</option>
+                                <option value="Completed">Completed</option>
+                            </optgroup>
+                            <optgroup label="User based">
+                                <option value="Self_Assigned">Self Assigned</option>
+                                <option value="Created_Task" class="cls_ret">Created Task</option>
+                            </optgroup>
+                        </select> -->
+
+                        <button type="button" class="btn btn-sm btn-info modal-lg" data-toggle="modal"
+                            data-target="#new_task" id="get_edit">
+                            <i class="fas fa-plus"></i> New Project
+                        </button>
+
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="table-responsive my_leave" style="display: lock;">
+                            <span class="card-title"><i class="fas fa-list"></i> My Leaves</span>
+                            <table class="table table-sm table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Status</th>
+                                        <th>Type</th>
+                                        <th>Apply Date</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Duration</th>
+                                        <th>Approve</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="my_leave_rec">
+                                </tbody>
+                            </table>
+                        </div> -->
+                        <div class="table-responsive">
+                            <table id="projectdetailstable" class="display table table-striped table-hover"
+                                style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Project Name</th>
+                                        <th>Description</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Rule</th>
+                                        <th>No.of Activity</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- new and edit task -->
+<div class="modal right fade" id="new_task" tabindex="-1" role="dialog" aria-labelledby="new_task"
+    data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="task-form" method="post" onsubmit="return false;">
+                <div class="modal-header card-primary card-outline card-outline-tabs modalfixed">
+                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist"
+                        style="border-bottom: 0px solid #dee2e6;">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill"
+                                href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
+                                aria-selected="true"> <i class="fas fa-edit"></i><span class="title_name"></span>
+                                Project</a>
+                        </li>
+                        <li class="nav-item if_new">
+                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
+                                href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
+                                aria-selected="false"><i class="fas fa-list"></i> Setup Activity & Tasks</a>
+                        </li>
+                    </ul><i class="fa-solid fa-list-check"></i>
+                    <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" onclick="close_modal()">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
+                            aria-labelledby="custom-tabs-four-home-tab">
+                            <div class="row" id="project_section">
+                                <!-- Project details form -->
+                                <div class="form-group col-12">
+                                    <label for="s_task_name">Project title</label>
+                                    <input type="text" class="form-control form-control-sm" id="s_task_name"
+                                        name="s_task_name" placeholder="Task name">
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="s_task_desc">Project Description</label>
+                                    <textarea class="form-control form-control-sm" id="s_task_desc" name="s_task_desc"
+                                        placeholder="Task description"></textarea>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="project_sch">Project Schedule Date Rule</label>
+                                    <select name="project_sch" id="project_sch" class="form-control form-control-sm">
+                                        <option value="Start Date Fix & End Date Flexible">Start Date Fix & End Date
+                                            Flexible</option>
+                                        <option value="Start Date Flexible & End Date Fix">Start Date Flexible & End
+                                            Date Fix</option>
+                                        <option value="Start Date Fix & End Date Fix">Start Date Fix & End Date Fix
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label for="d_start_date">Start Date</label>
+                                    <input type="date" class="form-control form-control-sm" id="d_start_date"
+                                        name="d_start_date">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="d_end_date">End Date</label>
+                                    <input type="date" class="form-control form-control-sm" id="d_end_date"
+                                        name="d_end_date">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-primary if_edit" id="submit_project"
+                                    onclick="saveprojectdetails()">Save
+                                    Project</button>
+                            </div>
+                        </div>
+
+                        <!-- Setup Activity & Tasks tab -->
+                        <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
+                            aria-labelledby="custom-tabs-four-profile-tab">
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="basic-datatables" class="display table table-striped table-hover"
+                                            style="width: 728px; margin-left: 0px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Activity</th>
+                                                    <th>No.of Task</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <button type="button" class="btn btn-sm btn-primary if_edit" id="add_task"
+                                            data-toggle="modal" data-target="#addModal">Add Activity</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Save button placed here -->
+                            <!-- <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-primary if_edit" id="submit_activity">Save
+                                    Activity</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Close button remains in the footer -->
+                <div class="modal-footer modal-footer-fixed">
+                    <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal"
+                        onclick="close_modal()">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- add task and schedule modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal-width" role="document">
+        <div class="modal-content custom-modal-height">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Add Activity & Task Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="s_act_name">Activity Name</label>
+                        <input type="text" class="form-control form-control-sm" id="s_act_name" name="s_act_name"
+                            placeholder="Activity name">
+                    </div>
+                    <!-- <div class="form-group col-sm-12">
+                        <label for="s_act_desc">Description</label>
+                        <textarea class="form-control form-control-sm" id="s_act_desc" name="s_act_desc"
+                            placeholder="Task description"></textarea>
+                    </div> -->
+                    <div class="form-group row">
+                        <label for="no_task" class="col-form-label col-sm-4">No. of Task</label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control form-control-sm" id="no_task" name="no_task">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-success" id="addRowBtn">Add Task</button>
+                        </div>
+                    </div>
+
+
+                    <table id="basic-datatables2" class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Task</th>
+                                <!-- <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th> -->
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveactivity">Save
+                    Data</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- listofactivity -->
+<div class="modal fade" id="addModal3" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal-width" role="document">
+        <div class="modal-content custom-modal-height">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">List of Activity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <button type="button" class="btn btn-info" id="newact">Add New Activity</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables4" class="display table table-striped table-hover"
+                                style="width: 1033.8px; margin-left: 0px;">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Activity Name</th>
+                                        <th>No.of Task</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <button type="button" class="btn btn-success" id="addRowBtn">+ Add Task</button> -->
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveactivity3">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- edittaskbyactivity -->
+
+<div class="modal fade" id="addModal2" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal-width" role="document">
+        <div class="modal-content custom-modal-height">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Edit Activity & Task Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="s_act_name">Activity Name</label>
+                        <input type="text" class="form-control form-control-sm" id="s_act_name2" name="s_act_name2"
+                            placeholder="Activity name" readonly>
+                    </div>
+                    <!-- <div class="form-group col-sm-12">
+                        <label for="s_act_desc">Description</label>
+                        <textarea class="form-control form-control-sm" id="s_act_desc2" name="s_act_desc2"
+                            placeholder="Task description"></textarea>
+                    </div> -->
+
+                    <table id="basic-datatables3" class="display table table-striped table-hover" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Task</th>
+                                <!-- <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th> -->
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <!-- <button type="button" class="btn btn-success" id="addRowBtn">+ Add Task</button> -->
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveactivity2">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form action="/uplaod_attachments" id="attachment_upload" method="post" enctype="multipart/form-data"
+    target="output_iframe">
+    <div class="modal fade" id="attach-modal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Attachments</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                            aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="em_code" name="em_code" />
+                    <input type="hidden" id="att_type" name="att_type" value="TASK_FILE" />
+                    <input id="fileupload" type="file" name="fileupload" required />
+                    <span id="snip_lod"></span>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-primary" id="upload-button"
+                        onclick="get_upload(this)">Submit</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
+<!-- <iframe name="output_iframe" src="" id="output_iframe" width="XX" height="YY" style="display:none"
+    onload="calltemp( 'output_iframe')">
+</iframe> -->
+
+<script src="../assets/javascript/tasks.js"></script>
+<!-- <script src="../assets/javascript/tasks.js"></script> -->

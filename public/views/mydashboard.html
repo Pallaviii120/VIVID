@@ -1,0 +1,125 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Portfolio</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Portfolio</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <form id="punch-in-form" method="post" onsubmit="return false;">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h2>
+                                        <b id="ptime">12:50:51</b>
+
+                                    </h2>
+                                    <h4 class="text-muted" id="pdate">September,22 2021</h4>
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <select name="s_work_type" id="s_work_type"
+                                                    class="form-control form-control-sm">
+                                                    <option value="OFFICE">OFFICE</option>
+                                                    <option value="FACTORY">FACTORY</option>
+                                                    <option value="OUTDOOR">OUTDOOR</option>
+                                                    <option value="WFH">WFH</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" id="divbtn">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                id="punch_in">
+                                                <i class="fas fa-hand-point-up"></i> Punch-In</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <input type="hidden" id="d_atten_date">
+                                <input type="hidden" id="t_signin_time">
+                            </div>
+                            <div class="col-md-12" id="timediv">
+                                <footer class="blockquote-footer" id="ptime">You punch-in at
+                                    <b>
+                                        <span id="pdtime" style="color:blue;"></span>
+                                    </b>
+                                </footer>
+                                <!--   <footer class="blockquote-footer" id="potime">You punch-out at <b><span id="poutdtime" style="color:blue;"></span></b></footer> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <table class="table table-bordered table-sm">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Type</th>
+                                    <th style="color: blue;">Opening Balance</th>
+                                    <th style="color: #af0000;">Leave Taken</th>
+                                    <th style="color: #037f03;">Pending Leave</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leavelist"> </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 " id="tasklist">
+                <div class="card card-primary card-outline">
+                    <div class="card-body ">
+                        <div class="custom-scrollbar-js content-3">
+
+                            <table class="table">
+                                <thead>
+                                    <tr class="borderless">
+                                        <th>
+                                            <h4 class="card-title"> <b>Assigned Task</b></h4>
+                                        </th>
+                                        <th><a href="#/tasks" class="btn btn-outline-primary btn-xs float-right">View
+                                                All</a></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assignTask"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../assets/javascript/mydashboard.js"></script>
+<script>
+    /* Inset Dark */
+    // $(".content-3").mCustomScrollbar({
+    //     theme: "rounded-dark"
+    //   });
+    //   alert("EMPLOYEE");
+</script>

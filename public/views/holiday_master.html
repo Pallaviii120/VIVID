@@ -1,0 +1,106 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Holiday</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Holiday</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-edit"></i> Holiday Form
+                        </h3>
+                    </div>
+                    <div class="card-body pad table-responsive">
+                        <form id="form-holiday" method="post" onsubmit="return false;" autocomplete="off" class="form_header" url>
+                            <div class="form-group">
+                                <label for="s_holiday_name">Holiday Name</label>
+                                <input type="text" class="form-control form-control-sm" id="s_holiday_name" name="s_holiday_name" placeholder="Enter Holiday Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="d_from_date">From Date</label>
+                                <input type="date" class="form-control form-control-sm" id="d_from_date" name="d_from_date">
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="d_to_date">To Date</label>
+                                <input type="date" class="form-control form-control-sm" id="d_to_date" name="d_to_date">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="n_number_of_days">No. Of Days</label>
+                                <input type="number" class="form-control form-control-sm" id="n_number_of_days" name="n_number_of_days">
+                            </div>
+                            <div class="form-group">
+                                <label for="f_year">Year</label>
+                                <input type="number" class="form-control form-control-sm" id="f_year" name="f_year">
+                                <input type="hidden" class="form-control form-control-sm" id="n_id" name="n_id">
+                            </div>
+
+
+                            <button type="button" class="btn  btn-primary btn-sm" id="saveHoliday">Save</button>
+                            <button type="button" class="btn  btn-info btn-sm" id="updateHoliday">Update</button>
+                            <button type="button" class="btn  btn-warning btn-sm" id="cancelHoliday">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-edit"></i> Holiday List
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="holidaytbl" class="table table-sm table-hover text-nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Holiday Name</th>
+                                    <th>From Date</th>
+                                    <th>To Date</th>
+                                    <th>No. Of Days</th>
+                                    <th>Year</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#updateHoliday").hide();
+
+    /*   $.validate({
+          modules: 'html5'
+      });
+      */
+</script>
+<script src="../assets/javascript/holiday_master.js"></script>

@@ -1,0 +1,198 @@
+<style>
+    .light_font {
+        font-weight: 500 !important;
+    }
+</style>
+
+
+<script src="../assets/javascript/leave.js"></script>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Leave</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Leave</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <button type="button" class="btn btn-sm btn-info" onclick="get_emp_myleave()">
+                            <i class="fas fa-list"></i> Leave List
+                        </button>
+                        <button type="button" class="btn btn-sm btn-info" onclick="get_pen_leave()">
+                            <i class="fas fa-list"></i> Pending Approver <span
+                                class="badge bg-warning pending_cnt"></span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-info modal-lg" data-toggle="modal"
+                            data-target="#modal-lg" onclick="clear_filed()">
+                            <i class="fas fa-plus"></i> New Leave
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive my_leave" style="display: none;">
+                            <span class="card-title"><i class="fas fa-list"></i> My Leaves</span>
+                            <table class="table table-sm table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Status</th>
+                                        <th>Type</th>
+                                        <th>Apply Date</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Duration</th>
+                                        <th>Approve</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="my_leave_rec">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive my_approver" style="display: none;">
+                            <span class="card-title"><i class="fas fa-list"></i> Pending for Approval</span>
+                            <table class="table table-sm table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Type & Status</th>
+                                        <th>Requestor</th>
+                                        <th>Apply Date</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="approve_leave_rec">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal  right fade" id="modal-lg" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-edit"></i> Leave Form
+                    </h3>
+                </div>
+                <div class="card-body pad table-responsive">
+                    <form id="form-leave" method="post" onsubmit="return false;">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="s_em_code">Employee</label>
+                                <select name="s_em_code" id="s_em_code" class="form-control form-control-sm select2_emp"
+                                    onchange="get_leave_type('s_em_code')" data-placeholder="Select an employee"
+                                    style="width: 100%;">
+                                </select>
+                                <input type="hidden" id="n_emp_leave_id" name="n_emp_leave_id" disabled>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="n_type_id">Leave Type</label>
+                                <select name="n_type_id" id="n_type_id" class="form-control form-control-sm"
+                                    onchange="get_pending_leave(this)">
+                                </select> <small class="text-muted">Pending Leave(Current Month) : <span
+                                        class="pending_leaves" style="color: red;">0</span></small>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label>Leave Duraton</label>
+                                <br>
+                                <!-- <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
+                                    <label for="customRadio1" class="custom-control-label">Custom Radio</label>
+                                </div>   -->
+                                <label for="s_leave_type_1hd" class="light_font">
+                                    <input type="radio" name="s_leave_type" id="s_leave_type_1hd" onclick="chenage_duration(this)" value="1 HALF">
+                                    1st Half
+                                </label> 
+                                <label for="s_leave_type_2hd" class="light_font">
+                                    <input type="radio" name="s_leave_type" id="s_leave_type_2hd"
+                                        onclick="chenage_duration(this)" value="2 HALF">
+                                    2nd Half
+                                </label>
+                                <label for="s_leave_type_fd" class="light_font">
+                                    <input type="radio" name="s_leave_type" id="s_leave_type_fd" checked
+                                        onclick="chenage_duration(this)" value="FULL DAY">
+                                    Full day
+                                </label>
+                                <label for="s_leave_type_ad" class="light_font">
+                                    <input type="radio" name="s_leave_type" id="s_leave_type_ad"
+                                        onclick="chenage_duration(this)" value="ABOVE A DAY">
+                                    Above a day
+                                </label>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="d_apply_date"> Apply Date</label>
+                                <input type="date" class="form-control form-control-sm" id="d_apply_date"
+                                    name="d_apply_date" disabled>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="d_start_date"><span class="above_day" style="display: none;">From
+                                    </span>Date</label>
+                                <input type="date" class="form-control form-control-sm" id="d_start_date"
+                                    name="d_start_date"> Duration : <span class="d_leave_duration"
+                                    style="color: red;">0</span>
+                            </div>
+
+                            <div class="form-group col-sm-6 above_day" style="display: none;">
+                                <label for="d_end_date">To Date</label>
+                                <input type="date" class="form-control form-control-sm" id="d_end_date"
+                                    name="d_end_date">
+                            </div>
+
+                            <div class="form-group col-sm-12">
+                                <label for="s_reason">Reason</label>
+                                <textarea class="form-control form-control-sm" id="s_reason" name="s_reason"></textarea>
+                            </div>
+
+                            <div class="text-center col-sm-12">
+                                <button type="submit" class="btn btn-sm btn-primary" id="submit_leave">Submit</button>
+
+                                <button type="button" onclick="leave_update(this);"
+                                    class="btn btn-sm btn-success view_btn" id="btn_Approved" style="display: none;">
+                                    <i class="fas fa-check-circle"></i> Approve
+                                </button>
+                                <button type="button" onclick="leave_update(this);"
+                                    class="btn btn-sm btn-danger view_btn" id="btn_Rejected" style="display: none;">
+                                    <i class="far fa-times-circle"></i> Reject
+                                </button>
+                                <button type="reset" class="btn btn-sm btn-warning close_modal"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

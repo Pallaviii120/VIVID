@@ -1,0 +1,206 @@
+
+<style>
+  .stats-box {
+    background-color: #1e3c66;
+    border: 1px solid #fefefe;
+    margin-bottom: 15px;
+    padding: 4px;
+    color: white;
+  };
+  .statistics .row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+</style>
+<!-- Main content -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- total employee -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Total Active Employee</span>
+            <span class="info-box-number ttl_active_emp">0</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-alt-slash"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Total Inactive Employee</span>
+            <span class="info-box-number ttl_inactive_emp">0</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-snowman"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Total Leave Apply</span>
+            <span class="info-box-number ttl_leave_apply">0</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-exclamation"></i></span>
+
+          <div class="info-box-content">
+            <span class="info-box-text">Total Pending Task</span>
+            <span class="info-box-number ttl_pending_task">0</span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+    </div>
+
+    <div class="col-xl-8 col-lg-12 col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-1">
+              <h6 class="mb-0 font-weight-bold">Today Employees Availability</h6>
+            </div>
+            <div class="card-body">
+              <div class="row g-2 row-deck">
+                <div class="col-md-6 col-sm-6">
+                  <div class="card">
+                    <div class="card-body ">
+                      <i class="far fa-check-square fs-3" style="font-size: 33px;"></i>
+                      <h5 class="mt-0 mb-2 fw-bold small-14">Present</h5>
+                      <span class="text-muted today_p">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="card">
+                    <div class="card-body ">
+                      <i class="far fa-clock fs-3" style="font-size: 33px;"></i>
+                      <h6 class="mt-0 mb-2 fw-bold small-14">Late Coming</h6>
+                      <span class="text-muted today_li">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="card">
+                    <div class="card-body ">
+                      <i class="fas fa-ban fs-3" style="font-size: 33px;"></i>
+                      <h5 class="mt-0 mb-2 fw-bold small-14">Absent</h5>
+                      <span class="text-muted today_a">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <i class="fas fa-umbrella-beach fs-3" style="font-size: 33px;"></i>
+                      <h5 class="mt-0 mb-2 fw-bold small-14">On Leave</h5>
+                      <span class="text-muted today_ttl_leave">0</span>
+                      <!-- <span class="text-muted today_l">0</span> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <!-- <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-1">
+              <h6 class="mb-0 font-weight-bold">Task Statistics</h6>
+            </div> -->
+            <div class="card-body"> 
+              <h6 class="mb-2 font-weight-bold">Task Statistics</h6>
+              <div class="statistics"> 
+                <div class="row"> 
+                  <div class="col-md-6 col-6 text-center">
+                    <div class="stats-box">
+                      <p>Total Tasks</p>
+                      <h3 class="ttl_task" >0</h3>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-6 text-center">
+                    <div class="stats-box">
+                      <p>Total Drop Tasks</p>
+                      <h3 class="Drop_percentage_ttl">0</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="progress mb-3">
+                <div class="progress-bar bg-purple Completed_percentage" role="progressbar" aria-valuenow="0" aria-valuemin="0"  aria-valuemax="100" style="width: 0%;">0%</div>
+                <div class="progress-bar bg-warning WIP_percentage" role="progressbar" aria-valuenow="0" aria-valuemin="0"  aria-valuemax="100" style="width: 0%;">0%</div>
+                <div class="progress-bar bg-success Assigned_percentage" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
+                <div class="progress-bar bg-danger Return_percentage" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div> 
+                <div class="progress-bar bg-dark Drop_percentage" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div> 
+              </div>
+              <div>
+                <p><i class="far fa-dot-circle text-purple mr-2"></i>Completed  <span class="float-right Completed">0</span></p>
+                <p><i class="far fa-dot-circle text-warning mr-2"></i>WIP  <span class="float-right WIP">0</span></p>
+                <p><i class="far fa-dot-circle text-success mr-2"></i>Assigned  <span class="float-right Assigned">0</span></p> 
+                <p><i class="far fa-dot-circle text-danger mr-2"></i>Return  <span class="float-right Return">0</span></p>
+                <p class="mb-0"><i class="far fa-dot-circle text-muted mr-2"></i>Drop  <span class="float-right Drop">0</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <h4><i class="fas fa-user-clock"></i> Today's Attendance</h4>
+            <div class="custom-scrollbar-js content-3">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm nowrap">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Shift</th>
+                      <th>Work type</th>
+                      <th>In</th>
+                      <th>Out</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="empattend"> </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+</section>
+<!-- /.content -->
+<script src="../assets/javascript/dashboard.js"></script>
+<!-- <script>
+  $(".content-3").mCustomScrollbar({
+    theme: "rounded-dark"
+  });
+</script> -->

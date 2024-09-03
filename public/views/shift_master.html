@@ -1,0 +1,110 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Shift</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <a href="/main">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Shift</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-edit"></i> Shift Form
+                        </h3>
+                    </div>
+                    <div class="card-body pad table-responsive">
+                        <form id="form-shift" method="post" onsubmit="return false;" autocomplete="off" class="form_header">
+                            <div class="form-group">
+                                <label for="s_shift">Shift Name</label>
+                                <input type="text" class="form-control form-control-sm" id="s_shift" name="s_shift" placeholder="Enter Shift Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="s_shift_desc">Shift Description</label>
+                                <input type="text" class="form-control form-control-sm" id="s_shift_desc" name="s_shift_desc" placeholder="Enter Shift Desc">
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="t_start_time">Start Time</label>
+                                <input type="time" class="form-control form-control-sm" id="t_start_time" name="t_start_time">
+                            </div>
+                            <div class="form-group">
+                                <label for="t_end_time">End Time</label>
+                                <input type="time" class="form-control form-control-sm" id="t_end_time" name="t_end_time">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="s_gross_start_time">Gross Start Time</label>
+                                <input type="number" class="form-control form-control-sm" id="s_gross_start_time" name="s_gross_start_time">
+                            </div>
+                            <div class="form-group">
+                                <label for="s_gross_end_time">Gross End Time</label>
+                                <input type="number" class="form-control form-control-sm" id="s_gross_end_time" name="s_gross_end_time">
+                            </div>
+                            <div class="form-group">
+                                <label for="s_min_work_hours">Min Work Hours</label>
+                                <input type="number" class="form-control form-control-sm" id="s_min_work_hours" name="s_min_work_hours">
+                                <input type="hidden" class="form-control form-control-sm" id="n_shift_id" name="n_shift_id">
+                            </div>
+
+                            <button type="button" class="btn  btn-primary btn-sm" id="saveShift">Save</button>
+                            <button type="button" class="btn  btn-info btn-sm" id="updateShift">Update</button>
+                            <button type="button" class="btn  btn-warning btn-sm" id="cancelShift">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-edit"></i> Shift List
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="shifttbl" class="table table-sm table-hover text-nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Shift</th>
+                                    <th>Description</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Gross Start</th>
+                                    <th>Gross End</th>
+                                    <th>Work Hour</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $("#updateShift").hide();
+</script>
+<script src="../assets/javascript/shift_master.js"></script>
+<script src="../assets/javascript/shift_master.js"></script>

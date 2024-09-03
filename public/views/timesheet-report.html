@@ -1,0 +1,101 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<section class="content-header">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <span class="font-weight-bolder">
+                            <b><i class="fas fa-file-alt text-info"></i> TimeSheet Report</b>
+                            <br><br>
+                            <!-- <button data-toggle="collapse" data-target="#demo"
+                                class="btn btn-primary btn-sm float-right" id="attd_open">
+                                <i class="fas fa-filter"></i>
+                            </button> -->
+                        </span>
+                        <div id="demo">
+                            <div class="row">
+                                <div class="form-group col-sm-3">
+                                    <label for="s_em_code">Project</label>
+                                    <select name="s_em_code" id="s_em_code"
+                                        class="form-control form-control-sm select2_emp"
+                                        data-placeholder="Select Project" style="width: 100%;">
+                                    </select>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Area">Start Date:</label>
+                                        <input type="date" id="start_date" name="start_date" class="form-control"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="district">End Date:</label>
+                                        <input type="date" id="end_date" name="end_date" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group col-sm-3">
+                                    <label for="s_category">Category</label>
+                                    <select name="s_category" id="s_category" class="form-control form-control-sm"
+                                        data-placeholder="Select an employee" style="width: 100%;">
+
+                                        <option value="date">Date Wise Report</option>
+                                        <option value="month">Month Wise Report</option>
+                                    </select>
+                                </div> -->
+                                <div class="form-group col-sm-3" style="margin-top: 32px;">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        onclick="gettimesheetreport()">Filter</button>
+                                    <button type="button" class="btn btn-warning btn-sm"
+                                        onclick="reset_form()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-primary card-outline" id="reportrow">
+                    <div class="card-body ">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm table-hover nowrap" id="tbl-atte-report">
+                                <thead>
+                                    <tr>
+                                        <th>Project Code</th>
+                                        <th>Project Name</th>
+                                        <th>Month</th>
+                                        <th>Date</th>
+                                        <th>Employee Code</th>
+                                        <th>Employee Name</th>
+                                        <th>Work Hours</th>
+                                        <th>Status</th>
+                                        <th>Activity Name</th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody id="empattend"> </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="../assets/javascript/timesheet-report.js"></script>
+
+<!-- <script>
+    $(document).ready(function () {
+        // Initialize Select2 on your select elements
+        $('.select2_emp').select2();
+    });
+</script> -->
